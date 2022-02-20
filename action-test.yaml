@@ -1,0 +1,20 @@
+name: Action test workflow
+
+on:
+    workflow_dispatch:
+
+jobs:
+    make_file:
+        runs-on: unbuntu-latest
+        steps:
+          - name: Make a file
+            run: echo -n "Hello, world!" > hello.txt
+            
+    upload_file:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Upload the file
+            uses: actions/upload-artifact@v2
+            with:
+                name: hello
+                path: ${{ github.workspace }}/hello.txt
